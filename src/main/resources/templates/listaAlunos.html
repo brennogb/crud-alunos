@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta charset="UTF-8"/>
+		<title>Listagem</title>
+		<link href="/css/bootstrap.min.css" rel="stylesheet"/>
+	
+	    <!-- Custom styles for this template -->
+	    <link href="/css/narrow-jumbotron.css" rel="stylesheet"/>
+	    <script src="/js/jquery-3.2.1.min.js"></script>
+	    <script src="/js/tether.min.js"></script>
+	    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+			<div class="row">
+				<div class="page-header">
+					<h1>Listagem</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div th:if="${alunos.empty}">
+					<div class="alert alert-warning">
+						<strong>Nenhum aluno cadastrado!</strong>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<table class="table">
+					<thead class="thead-inverse">
+						<tr>
+							<th scope="row">Nome</th>
+							<th scope="row">Curso</th>
+							<th scope="row">Matrícula</th>
+							<th scope="row">Semestre</th>
+							<th scope="row">Status</th>
+							<th scope="row">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="aluno: ${alunos}">
+							<td th:text="${aluno.nome}"/>
+							<td th:text="${aluno.curso}"/>
+							<td th:text="${aluno.matricula}"/>
+							<td th:text="${aluno.semestre}"/>
+							<td th:text="${aluno.statusAluno}"/>
+							<td>
+								<a th:href="@{/alunos/edit/} + ${aluno.id}" class="btn btn-primary">Editar</a>
+								
+								
+								<a th:href="@{/alunos/remove/} + ${aluno.id}" class="btn btn-danger">Excluir</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row pull-right">
+				<a href="/alunos/new" class="btn btn-primary">Novo Aluno</a>
+				<a href="/" class="btn btn-default">Tela Inicial</a>
+			</div>
+		</div>
+</body>
+</html>

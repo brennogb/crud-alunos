@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Cadastro</title>
+		<link href="/css/bootstrap.min.css" rel="stylesheet"/>
+	
+	    <!-- Custom styles for this template -->
+	    <link href="/css/narrow-jumbotron.css" rel="stylesheet"/>
+	    <script src="/js/jquery-3.2.1.min.js"></script>
+	    <script src="/js/tether.min.js"></script>
+	    <script src="/js/bootstrap.min.js"></script>
+	</head>
+<body>
+	<div class="container">
+	<div class="jumbotron text-center">
+		<div class="page-header">
+			<h1 th:text="${titulo}"></h1>
+		</div>
+		
+			<form action="#" th:action="@{/alunos/save}" th:object="${aluno}" method="POST">
+				<input type="hidden" th:field="*{id}"/>
+			  <div class="form-group text-left">
+			    <label for="nome">Nome</label>
+			    <input class="form-control" id="nome" th:field="*{nome}" required="required" placeholder="Informe seu nome"/>
+			  </div>
+			  
+			  <div class="form-group text-left">
+			    <label for="curso">Curso</label>
+			    <input class="form-control" id="curso" th:field="*{curso}" required="required"  placeholder="Informe seu curso"/>
+			  </div>
+			  
+			  <div class="form-group text-left">
+			    <label for="matricula">Matricula</label>
+			    <input class="form-control" id="matricula" th:field="*{matricula}" required="required" placeholder="Informe sua matricula"/>
+			  </div>
+			  
+			  <div class="form-group text-left">
+			    <label for="semestre">Semestre</label>
+			    <input class="form-control" id="semestre" th:field="*{semestre}" required="required"  placeholder="Informe seu semestre"/>
+			  </div>
+			  
+			  <div class="form-group text-left">
+			    <label for="status">Status</label>
+			    <select class="form-control" id="status" th:field="*{statusAluno}" th:remove="all-but-first" required="required">
+			     	<option th:each="status : ${listaStatus}" th:value="${status}" th:text="${status}"/> 
+			    </select>
+			  </div>
+				  
+				  <button type="submit" class="btn btn-primary" th:text="${fieldBotao}"></button>
+				  <a href="/alunos" class="btn btn-danger">Cancelar</a>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
